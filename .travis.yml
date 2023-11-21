@@ -13,4 +13,11 @@ after_success:
     - docker build -t hudaipena/multi-nginx ./nginx
     - docker build -t hudaipena/multi-server ./server
     - docker build -t hudaipena/multi-worker ./worker
+    # Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Take those image and push them to docker hub
+    - docker push hudaipena/multi-client
+    - docker push hudaipena/multi-nginx
+    - docker push hudaipena/multi-server
+    - docker push hudaipena/multi-worker
     
